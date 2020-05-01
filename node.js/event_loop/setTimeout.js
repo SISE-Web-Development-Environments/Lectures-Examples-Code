@@ -2,7 +2,7 @@ const s = new Date().getSeconds();
 
 const loop_seconds = 3;
 
-setTimeout(function() {
+setTimeout(function () {
   // prints out "2", meaning that the callback is not called immediately after 500 milliseconds.
   console.log("Ran after " + (new Date().getSeconds() - s) + " seconds");
 }, 500);
