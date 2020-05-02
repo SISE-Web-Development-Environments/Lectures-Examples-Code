@@ -1,0 +1,42 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+
+    <div id="app">
+
+
+        <input placeholder="Write your input here" id="user_input">
+
+        <div>
+            The user input is: <span id="input"> </span>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+<!-- Code to bind and update data between span to input Vue.js on app -->
+<script>
+    let input_elem = document.getElementById("user_input");
+    let span_elem = document.getElementById("input");
+
+    updateInputView = () => {
+        span_elem.innerText = input_elem.value;
+    }
+
+    setInterval(updateInputView, 1)
+</script>
+
+
+<!-- Code to declare Vue.js on app -->
+<!-- <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            user_input: ''
+        }
+    })
+</script> -->
