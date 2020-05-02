@@ -1,7 +1,10 @@
 const express = require("express");
+const morgan = require("morgan"); // logging library
 const app = express();
 const port = 3000;
-const cors = require("cors");
+
+// print request logs
+app.use(morgan(":method :url :status  :response-time ms"));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

@@ -2,17 +2,15 @@ while (queue.waitForMessage()) {
   queue.processNextMessage();
 }
 
-
-
-$.on('button', 'click', function onClick() {
-    setTimeout(function timer() {
-        console.log('You clicked the button!');    
-    }, 5000);
+$.on("button", "click", function onClick() {
+  setTimeout(function timer() {
+    console.log("You clicked the button!");
+  }, 5000);
 });
 
 // $.on('p', 'mouseover', function onHover() {
 //     // setTimeout(function timer() {
-//     //     console.log('You clicked the button!');    
+//     //     console.log('You clicked the button!');
 //     // }, 5000);
 //     console.log("hover")
 // });
@@ -25,5 +23,5 @@ $.on('button', 'click', function onClick() {
 
 // console.log("Welcome to loupe.");
 
-<button>Click me</button>
-<p> Hover me </p>
+/* <button>Click me</button>
+<p> Hover me </p> */

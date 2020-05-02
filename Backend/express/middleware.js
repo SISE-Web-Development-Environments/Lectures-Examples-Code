@@ -9,13 +9,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// app.use(function(req, res, next) {
-//   req["message"] = ["I just came from the middleware"];
+app.use(function (req, res, next) {
+  req["message"] = ["I just came from the middleware"];
 
-//   next();
-// });
+  next();
+});
 
-// app.use("/test", function(req, res, next) {
+// app.use("/test", function (req, res, next) {
 //   req["message"].push("Im a middleware of '/test*' uri only");
 
 //   next();
@@ -33,12 +33,12 @@ app.use(bodyParser.json());
 // });
 
 // POST method route and '/' URI
-app.post("/", function(req, res) {
+app.post("/", function (req, res) {
   data = req.body;
   res.send([data, req.message]);
 });
 
-app.get("/test/me", function(req, res) {
+app.get("/test/me", function (req, res) {
   res.send(req.message);
 });
 

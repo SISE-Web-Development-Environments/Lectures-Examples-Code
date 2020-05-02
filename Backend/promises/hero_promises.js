@@ -4,7 +4,7 @@ const axios = require("axios"); // supports promises
 // ++++++++++++++++++++++++++++++++++++++++++++++++
 
 const opn = require("opn");
-const file_path = "./my_hero.txt";
+const file_path = `${__dirname}/my_hero.txt`;
 
 // API SITE: https://superheroapi.com/
 const superhero_api_baseurl = "https://superheroapi.com/api/10219968444535202";
@@ -24,7 +24,7 @@ let readFilePromise = () => {
   });
 };
 
-let setTimeoutPromise = data => {
+let setTimeoutPromise = (data) => {
   // requests are limit to 1 in a second
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -34,7 +34,7 @@ let setTimeoutPromise = data => {
 };
 
 readFilePromise()
-  .then(file_data => {
+  .then((file_data) => {
     //#region
 
     console.log("The superhero name is:", file_data);
@@ -47,7 +47,7 @@ readFilePromise()
     //#endregion
     return axios.get(request_url);
   })
-  .then(response => {
+  .then((response) => {
     //#region
     console.log("response", response.data);
     if (response.data.response == "error") throw Error(response.data.error);
@@ -59,11 +59,11 @@ readFilePromise()
     //#endregion
     return setTimeoutPromise(request_url);
   })
-  .then(request_url => {
+  .then((request_url) => {
     console.log(`GET ${request_url}`);
     return axios.get(request_url);
   })
-  .then(response => {
+  .then((response) => {
     //#region
     console.log("response:", response.data); // Print the response body
     if (response.data.response == "error") throw Error(response.data.error);
@@ -72,10 +72,7 @@ readFilePromise()
     //   getHeroImage(request_url);
     //#endregion
   })
-  .catch(err => {
+  .catch((err) => {
     if (err.code) console.log("error message:", err.code);
     else console.log("error message:", err);
   });
-
-
-  

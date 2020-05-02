@@ -4,7 +4,7 @@ const axios = require("axios"); // supports promises
 // ++++++++++++++++++++++++++++++++++++++++++++++++
 
 const opn = require("opn");
-const file_path = "./my_hero.txt";
+const file_path = `${__dirname}/my_hero.txt`;
 
 // API SITE: https://superheroapi.com/
 const superhero_api_baseurl = "https://superheroapi.com/api/10219968444535202";
@@ -24,7 +24,7 @@ let readFilePromise = () => {
   });
 };
 
-let setTimeoutPromise = data => {
+let setTimeoutPromise = (data) => {
   // requests are limit to 1 in a second
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -35,7 +35,7 @@ let setTimeoutPromise = data => {
 
 async function showMeMyHero() {
   const file_data = await readFilePromise();
-   //#region
+  //#region
   console.log("The superhero name is:", file_data);
   let superhero_name = file_data;
   let request_url_id = `${superhero_api_baseurl}/search/${superhero_name} `;
@@ -65,7 +65,7 @@ async function showMeMyHero() {
   //#endregion
 }
 
-showMeMyHero().catch(err => {
+showMeMyHero().catch((err) => {
   if (err.code) console.log("error message:", err.code);
   else console.log("error message:", err);
 });
