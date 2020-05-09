@@ -1,0 +1,49 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
+<body>
+
+    <div id="app">
+
+        <p v-if="seen">Now you see me</p>
+
+        <a v-bind:href="url"> ... </a>
+
+        <a v-on:click="doSomething"> ... </a>
+
+        <div>
+            <input placeholder="Write your input here" v-model="user_input">
+            <p>
+                The user input is: {{user_input}}
+            </p>
+            <p>
+                The user input in uppercase is {{user_input.toUpperCase()}}
+            </p>
+        </div>
+        <div>
+
+            <input placeholder="Enter a number:" v-model="number">
+            Your number * 3 is equal to: {{ number * 3}}
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+<!-- Code to declare Vue.js on app -->
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            user_input: 'init_val',
+            number: null
+
+        }
+    })
+</script>

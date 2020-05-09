@@ -35,42 +35,27 @@ let setTimeoutPromise = (data) => {
 
 readFilePromise()
   .then((file_data) => {
-    //#region
-
-    console.log("The superhero name is:", file_data);
-
     let superhero_name = file_data;
     let request_url = `${superhero_api_baseurl}/search/${superhero_name} `;
 
     // Get the superhero ID from API
-    console.log(`GET ${request_url}`);
-    //#endregion
     return axios.get(request_url);
   })
   .then((response) => {
-    //#region
-    console.log("response", response.data);
     if (response.data.response == "error") throw Error(response.data.error);
     // See response body on postman
     let superhero_id = response.data.results[0].id;
-    console.log("superhero_id", superhero_id);
     // Get the superhero image
     let request_url = `${superhero_api_baseurl}/${superhero_id}/image`;
-    //#endregion
     return setTimeoutPromise(request_url);
   })
   .then((request_url) => {
-    console.log(`GET ${request_url}`);
     return axios.get(request_url);
   })
   .then((response) => {
-    //#region
-    console.log("response:", response.data); // Print the response body
     if (response.data.response == "error") throw Error(response.data.error);
     // specify the app to open in
     opn(response.data.url, { app: "chrome" });
-    //   getHeroImage(request_url);
-    //#endregion
   })
   .catch((err) => {
     if (err.code) console.log("error message:", err.code);

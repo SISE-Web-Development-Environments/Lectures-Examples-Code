@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
+
+<html>
+
+
+<body>
+
+    <div id="app">
+        <h1> v-show example</h1>
+        <p v-show="submitted"> {{ submitted_message }}</p>
+        <p v-show="!submitted"> {{ not_submitted_message }}</p>
+
+        <h1> v-if, v-else example</h1>
+        <p v-if="submitted"> {{ submitted_message }}</p>
+        <p v-else> {{ not_submitted_message }}</p>
+
+        <button v-if="!submitted" @click="handleSubmit">
+            Submit
+        </button>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            submitted: false,
+            not_submitted_message: "Please click on the submit button",
+            submitted_message: "Thank you for submitting!"
+        },
+        methods: {
+            handleSubmit() {
+                console.log("Call submit!");
+                this.submitted = true
+            }
+        }
+    })
+</script>

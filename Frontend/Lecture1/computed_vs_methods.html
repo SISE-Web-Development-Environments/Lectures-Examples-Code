@@ -1,0 +1,53 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<html>
+
+<body>
+
+    <div id="app">
+        <p>Computed: {{ formatedDate }}</p>
+        <p>Method: {{ formatDate() }}</p>
+        <p>{{ random }}</p>
+        <button @click="regenerate()">Generate new random number</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            date: new Date(),
+            random: 1
+        },
+        computed: {
+            formatedDate() {
+                console.log("computed");
+                let options = {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                };
+                return this.date.toLocaleString("en-us", options);
+            }
+        },
+        methods: {
+            formatDate() {
+                console.log("method");
+                let options = {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                };
+                return this.date.toLocaleString("en-us", options);
+            },
+            regenerate() {
+                this.random = Math.random()
+            }
+
+        }
+    })
+
+</script>

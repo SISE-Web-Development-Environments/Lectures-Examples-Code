@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
+
+<html>
+
+
+<body>
+
+    <div id="app">
+        <span>Number of clicks: {{num_clicks}}</span>
+        <button @click="increaseCounter">Click Here!</button>
+
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            num_clicks: 0
+        },
+        methods: {
+            increaseCounter() {
+                this.num_clicks += 1;
+            }
+        }
+    })
+</script>

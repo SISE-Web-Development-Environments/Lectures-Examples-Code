@@ -28,6 +28,7 @@ app.post("/", (req, res) => {
 // on postman use x-www-form-urlencoded - will send all values as strings
 // using raw -> JSON will send JSON
 app.post("/data", function (req, res) {
+  // TODO:  DEBUG!!
   // access with req.body to the sended data
   let someData = req.body;
   console.log(req.body);
@@ -35,7 +36,17 @@ app.post("/data", function (req, res) {
 });
 
 app.get("/users/:userId/books/:bookId", function (req, res) {
+  // TODO:  DEBUG!!
   res.send(req.params); // { "userId": "34", "bookId": "8989" }
+});
+
+// try shoes?order=desc&shoe[color]=blue&shoe[type]=converse
+app.get("/shoes", function (req, res) {
+  // TODO:  DEBUG!!
+  console.log(req.query.order);
+  console.log(req.query.shoe.color);
+  console.log(req.query.shoe.type);
+  res.send();
 });
 
 app.listen(port, () => {

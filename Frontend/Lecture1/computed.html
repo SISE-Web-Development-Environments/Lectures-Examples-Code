@@ -1,0 +1,40 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+</script>
+
+
+<html>
+
+<body>
+
+    <div id="app">
+        <h1> {{userName}}</h1>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            first_name: "John",
+            last_name: "Doe"
+        },
+        computed: {
+            userName() {
+                // ***** calling method from different places
+                //     if (this.first_name == "" || this.last_name == "") {
+                //         this.getUserNameFromServer()
+                //     }
+                return `${this.first_name} ${this.last_name}`
+            },
+
+            methods: {
+                getUserNameFromServer() {
+                    // .... AJAX request to server
+                }
+            },
+
+        })
+</script>
