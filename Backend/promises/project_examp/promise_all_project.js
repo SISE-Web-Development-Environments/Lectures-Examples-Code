@@ -22,9 +22,12 @@ app.get("/search", async function (req, res) {
     let query = req.query.query;
 
     // request spoonacular: Search Recipe
-    let search_response = await axios.get(
-      `${api_domain}/search?${api_key}&query=${query}&number=${number_of_results}`
-    );
+    let search_response = await axios.get(`${api_domain}/search?${api_key}`, {
+      params: {
+        query: query,
+        number: number_of_results,
+      },
+    });
 
     // Extract search results ids
     let recipes = search_response.data.results;
