@@ -33,16 +33,27 @@ app.get("/admin/:id/summary", function (req, res) {
   res.send("here is your summary data");
 });
 
-app.get("/error", function (req, res) {
-  console.log("/error");
+app.get("/error", function (req, res, next) {
   axios
     .get("www.somthing_not_real.com")
     .then((resp) => {
       console.log(resp.data);
     })
-    .catch((err) => {
-      console.log("Got an error!!");
-      console.log(err);
+    .catch(function (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log("error.response.data", error.response.data);
+        console.log("error.response.status", error.response.status);
+        console.log("error.response.headers", error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log("error.request", error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+
+      next("SOME ERROR");
     });
 });
 
