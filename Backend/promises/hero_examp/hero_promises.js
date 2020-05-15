@@ -19,6 +19,7 @@ let readFilePromise = () => {
         };
       }
       console.log(file_data);
+
       resolve(file_data);
     });
   });
@@ -36,6 +37,35 @@ let setTimeoutPromise = (data) => {
 readFilePromise()
   .then((file_data) => {
     let superhero_name = file_data;
+    let request_url = `${superhero_api_baseurl}/search/${superhero_name} `;
+
+    // Get the superhero ID from API
+    return axios.get(request_url);
+  })
+  .then((response) => {
+    if (response.data.response == "error") throw Error(response.data.error);
+    // See response body on postman
+    let superhero_id = response.data.results[0].id;
+    // Get the superhero image
+    let request_url = `${superhero_api_baseurl}/${superhero_id}/image`;
+    return setTimeoutPromise(request_url);
+  })
+  .then((request_url) => {
+    return axios.get(request_url);
+  })
+  .then((response) => {
+    if (response.data.response == "error") throw Error(response.data.error);
+    // specify the app to open in
+    opn(response.data.url, { app: "chrome" });
+  })
+  .catch((err) => {
+    if (err.code) console.log("error message:", err.code);
+    else console.log("error message:", err);
+  });
+
+readFilePromise()
+  .then((file_data) => {
+    let superhero_name = "b";
     let request_url = `${superhero_api_baseurl}/search/${superhero_name} `;
 
     // Get the superhero ID from API

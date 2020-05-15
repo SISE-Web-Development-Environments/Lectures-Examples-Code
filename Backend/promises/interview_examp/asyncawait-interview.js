@@ -11,7 +11,7 @@ const willIGetAccepted = new Promise((resolve, reject) => {
   }
 });
 
-const signContract = function(proposal) {
+const signContract = function (proposal) {
   return new Promise((resolve, reject) => {
     const signing = `I accept the proposal of monthly salary of ${proposal.Salary} and a daily 10bis budget of: ${proposal["10bis_budget"]} `;
     resolve(signing);
@@ -25,11 +25,10 @@ const signContract = function(proposal) {
 //   };
 
 // call our promise
-const goToInterview = function() {
-  willIGetAccepted
-    .then(signContract)
-    .then(fulfilled => console.log(fulfilled))
-    .catch(error => console.log(error.message));
+const goToInterview = async function () {
+  const answer = await willIGetAccepted;
+  const fulfilled = await signContract(answer);
+  console.log(fulfilled);
 };
 
-goToInterview();
+goToInterview().catch((error) => console.log(error.message));

@@ -4,8 +4,8 @@ var bodyParser = require("body-parser");
 var app = express();
 var port = 3000;
 
-customers_mod = require("./routes/customers");
-products_mod = require("./routes/products");
+customers_route = require("./routes/customers");
+products_route = require("./routes/products");
 
 // // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // POST method route and '/' URI
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendStatus(200);
 });
 

@@ -10,6 +10,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // print request logs
 app.use(morgan(":method :url :status  :response-time ms"));
 
+app.get("/test/:test", (req, res) => {
+  res.send("Hello World!");
+});
+app.get("/users", (req, res) => {
+  res.send("Hello World!");
+});
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -40,6 +46,7 @@ app.get("/users/:userId/books/:bookId", function (req, res) {
   res.send(req.params); // { "userId": "34", "bookId": "8989" }
 });
 
+// *********  query example ********** //
 // try shoes?order=desc&shoe[color]=blue&shoe[type]=converse
 app.get("/shoes", function (req, res) {
   // TODO:  DEBUG!!

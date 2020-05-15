@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+const axios = require("axios"); // supports promises
 
 var app = express();
 var port = 3000;
@@ -15,22 +16,35 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use("/test", function (req, res, next) {
-//   req["message"].push("Im a middleware of '/test*' uri only");
+app.use("/test", function (req, res, next) {
+  req["message"].push("Im a middleware of '/test*' uri only");
 
-//   next();
-// });
+  next();
+});
 
-// ADMIN EXAMPLE --------------------------
+// Admin EXAMPLE --------------------------
 
-// app.use("/manage/:id", function(req, res, next) {
-//   if (req.params.id != 0) res.sendStatus(401);
-//   else next();
-// });
+app.use("/admin/:id", function (req, res, next) {
+  if (req.params.id != 0) res.sendStatus(401);
+  else next();
+});
 
-// app.get("/manage/:id/summary", function(req, res) {
-//   res.send("here is your summary data");
-// });
+app.get("/admin/:id/summary", function (req, res) {
+  res.send("here is your summary data");
+});
+
+app.get("/error", function (req, res) {
+  console.log("/error");
+  axios
+    .get("www.somthing_not_real.com")
+    .then((resp) => {
+      console.log(resp.data);
+    })
+    .catch((err) => {
+      console.log("Got an error!!");
+      console.log(err);
+    });
+});
 
 // POST method route and '/' URI
 app.post("/", function (req, res) {
@@ -40,6 +54,10 @@ app.post("/", function (req, res) {
 
 app.get("/test/me", function (req, res) {
   res.send(req.message);
+});
+
+app.use(function (err, req, res, next) {
+  res.sendStatus(500).send("Internal error : {err}");
 });
 
 app.listen(port, () => {
