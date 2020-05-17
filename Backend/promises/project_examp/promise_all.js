@@ -25,7 +25,7 @@ async function callAll() {
   console.log(response);
 }
 
-// #region ---------------Better written code
+// #region --------------- General format
 // async function callAll(func, func_params) {
 //     const promises = [];
 
@@ -39,7 +39,7 @@ async function callAll() {
 //   }
 // #endregion
 
-//#region  -------------- shorter
+//#region  -------------- without calling another function
 // (async () => {
 //   const promises = [];
 

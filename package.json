@@ -11,6 +11,7 @@
   "homepage": "https://github.com/SISE-Web-Development-Environments/Lectures-Examples-Code#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "opn": "^6.0.0",
     "request": "^2.88.2"

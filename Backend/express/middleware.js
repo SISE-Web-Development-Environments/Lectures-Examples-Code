@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use("/test", function (req, res, next) {
+app.use("/", function (req, res, next) {
   req["message"].push("Im a middleware of '/test*' uri only");
 
   next();
@@ -40,6 +40,7 @@ app.get("/error", function (req, res, next) {
       console.log(resp.data);
     })
     .catch(function (error) {
+      // Different error handlers for axios !!
       if (error.response) {
         // Request made and server responded
         console.log("error.response.data", error.response.data);
@@ -67,8 +68,12 @@ app.get("/test/me", function (req, res) {
   res.send(req.message);
 });
 
+app.use(function (req, res, next) {
+  res.status(200).send("No Error middleware");
+});
+
 app.use(function (err, req, res, next) {
-  res.sendStatus(500).send("Internal error : {err}");
+  res.status(500).send("Error middleware");
 });
 
 app.listen(port, () => {

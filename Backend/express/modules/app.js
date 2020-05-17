@@ -17,8 +17,8 @@ app.get("/", function (req, res) {
   res.sendStatus(200);
 });
 
-app.use("/customers", customers_mod);
-app.use("/products", products_mod);
+app.use("/customers", customers_route);
+app.use("/products", products_route);
 
 // // error middleware
 // app.use(function(err, req, res, next) {
