@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { v1: uuidv1 } = require("uuid");
 const bcrypt = require("bcryptjs");
-const path = require("path");
+const morgan = require("morgan");
 const app = express();
 const port = 4000;
 
@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 // handle users cookies creation
+// print request logs
+app.use(morgan(":method :url :status  :response-time ms"));
 
 const session = require("client-sessions");
 
@@ -26,6 +28,8 @@ app.use(
   })
 );
 
+// successfully
+
 app.get("/test_cookie", function (req, res) {
   req.session.name = "shir";
   res.sendStatus(200);
@@ -38,7 +42,7 @@ app.get("/home", function (req, res) {
     // check that the user-info is valid --> user is authenticated
     for (let user_data of Object.values(users_db)) {
       if (req.session.id == user_data.id) {
-        res.sendFile(path.join(__dirname + "/home.html"));
+        res.sendFile(__dirname + "/home.html");
         return;
       }
     }
@@ -51,7 +55,7 @@ app.get("/home", function (req, res) {
 
 // serve the login page to the client
 app.get("/login", function (req, res) {
-  res.sendFile(path.join(__dirname + "/login.html"));
+  res.sendFile(__dirname + "/login.html");
   //__dirname : It will resolve to your project folder.
 });
 
@@ -79,7 +83,7 @@ app.get("/logout", function (req, res) {
 
 // serve the register page to the client
 app.get("/register", function (req, res) {
-  res.sendFile(path.join(__dirname + "/register.html"));
+  res.sendFile(__dirname + "/register.html");
   //__dirname : It will resolve to your project folder.
 });
 
@@ -102,7 +106,7 @@ app.post("/register_data", function (req, res) {
 
 // default end-point --> every requested resource that doesn't have an end-point, will reach here
 app.use(function (req, res, next) {
-  res.sendFile(path.join(__dirname + "/login.html"));
+  res.sendFile(__dirname + "/login.html");
 });
 
 app.listen(port, () => {

@@ -6,8 +6,12 @@
 <body>
 
     <div id="app">
-        Loon on vue dev tool
+        <h1 v-show="!hide"> {{message}}</h1>
         <div />
+        <input v-model="message">
+        <button v-on:click="hide_message">Click to hide</button>
+    </div>
+
 </body>
 
 </html>
@@ -16,14 +20,13 @@
     var vm = new Vue({
         el: "#app",
         data: {
-
-        },
-        computed: {
-
+            message: "Look on vue dev tool",
+            hide: false
         },
         methods: {
-
-
+            hide_message() {
+                this.hide = !this.hide
+            }
         }
 
     })

@@ -1,4 +1,4 @@
-const successful_interview = true;
+const successful_interview = false;
 
 // Promise
 const willIGetAccepted = new Promise((resolve, reject) => {
@@ -32,3 +32,4 @@ const goToInterview = async function () {
 };
 
 goToInterview().catch((error) => console.log(error.message));
+console.log("HHHAAA I'm nervous!!!");

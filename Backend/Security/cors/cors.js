@@ -3,16 +3,23 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 
-// app.use(cors());
+// Letting all origins to pass
+app.use(cors());
 
+// letting a custom origin to pass
 // app.use(
 //   cors({
-//     origin: "http://127.0.0.1:5500"
+//     origin: "http://127.0.0.1:3000"
 //   })
 // );
 
 app.get("/", (req, res) => {
-  res.send("<h1> Hello World!</h1>");
+  res.send("Im am localhost:3000 !!!");
+});
+
+
+app.get("/page", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.listen(port, () => {

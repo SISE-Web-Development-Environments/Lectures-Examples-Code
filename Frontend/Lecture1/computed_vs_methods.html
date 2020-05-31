@@ -20,28 +20,31 @@
         el: "#app",
         data: {
             date: new Date(),
-            random: 1
+            random: 1,
+            val: "val"
         },
         computed: {
             formatedDate() {
                 console.log("computed");
-                let options = {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                };
-                return this.date.toLocaleString("en-us", options);
+                // let options = {
+                //     year: "numeric",
+                //     month: "long",
+                //     day: "numeric"
+                // };
+                // return this.date.toLocaleString("en-us", options);
+                return this.val
             }
         },
         methods: {
             formatDate() {
                 console.log("method");
-                let options = {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                };
-                return this.date.toLocaleString("en-us", options);
+                // let options = {
+                //     year: "numeric",
+                //     month: "long",
+                //     day: "numeric"
+                // };
+                // return this.date.toLocaleString("en-us", options);
+                return this.val
             },
             regenerate() {
                 this.random = Math.random()
