@@ -1,4 +1,4 @@
-const successful_interview = false;
+const successful_interview = true;
 
 // Promise
 const willIGetAccepted = new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ const signContract = function (proposal) {
 const goToInterview = function () {
   willIGetAccepted
     .then(signContract)
-    .then(console.log(fulfilled))
+    .then((fulfilled) => console.log(fulfilled))
     .catch((error) => console.log(error.message));
 };
 
