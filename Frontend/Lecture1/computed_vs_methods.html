@@ -6,10 +6,10 @@
 <body>
 
     <div id="app">
-        <p>Computed: {{ formatedDate }}</p>
-        <p>Method: {{ formatDate() }}</p>
+        <p><b>Computed:</b> {{ formatedDate }}</p>
+        <p><b>Method:</b> {{ formatDate() }}</p>
         <p>{{ random }}</p>
-        <button @click="regenerate()">Generate new random number</button>
+        <button v-on:click="regenerate">Generate new random number</button>
     </div>
 </body>
 
@@ -21,7 +21,7 @@
         data: {
             date: new Date(),
             random: 1,
-            val: "val"
+            val: "Showing some val"
         },
         computed: {
             formatedDate() {
@@ -31,7 +31,7 @@
                 //     month: "long",
                 //     day: "numeric"
                 // };
-                // return this.date.toLocaleString("en-us", options);
+                // return this.val + this.date.toLocaleString("en-us", options);
                 return this.val
             }
         },
@@ -54,3 +54,6 @@
     })
 
 </script>
+
+<style>
+</style>

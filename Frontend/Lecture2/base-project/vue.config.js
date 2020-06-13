@@ -1,0 +1,3 @@
+watchOptions: {
+  poll: true;
+}
