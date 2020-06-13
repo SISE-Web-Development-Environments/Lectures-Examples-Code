@@ -1,5 +1,5 @@
-import Home from "./components/Home.vue";
-import RecipeSearch from "./components/recipes/RecipeSearch.vue";
+import Home from "./views/Home.vue";
+import Search from "./views/Search.vue";
 
 export const routes = [
   {
@@ -7,7 +7,7 @@ export const routes = [
     component: Home
   },
   {
-    path: "/recipes/search",
-    component: RecipeSearch
+    path: "/search",
+    component: Search
   }
 ];

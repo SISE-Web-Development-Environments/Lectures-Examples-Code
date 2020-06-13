@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import RecipePreview from "./recipes/RecipePreview";
+import RecipePreview from "../components/recipes/RecipePreview";
 export default {
   name: "Home",
   components: { RecipePreview }
