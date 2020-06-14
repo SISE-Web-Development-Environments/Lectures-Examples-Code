@@ -8,8 +8,13 @@ const router = new VueRouter({
   routes
 });
 
+import GlobalTest from "./components/Global.vue";
+Vue.component("GlobalTest", GlobalTest);
+
 import { shared_data } from "./shared_data";
 Vue.prototype.$store = shared_data;
+
+Vue.config.devtools = true;
 
 new Vue({
   el: "#app",

@@ -11,6 +11,9 @@ export default {
   props: {
     tasks: Array
   },
+  data: {
+    myTasks: tasks
+  },
   methods: {
     removeItem(index) {
       this.tasks.splice(index, 1);
@@ -19,5 +22,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

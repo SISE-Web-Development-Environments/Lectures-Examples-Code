@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     addToList() {
-      this.$emit("addItem", this.new_item);
+      this.$emit("new-item-added", this.new_item);
       this.new_item = "";
     }
   }

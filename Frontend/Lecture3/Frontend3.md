@@ -43,9 +43,11 @@
 
    ```Javascript
    import Vue from 'vue'
-   import routes from "./routes";
 
+   import VueRouter from 'vue-router';
    Vue.use(VueRouter);
+
+   import routes from "./routes"; // <----
    const router = new VueRouter({ // <----
        routes
    })
@@ -113,7 +115,7 @@ Without the exact, the active class will look on the route prefix ('/')
 
 ## Navigating From Our Script
 
-```Javascript
+```HTML
 <script>
     export default {
         methods() {
@@ -166,13 +168,54 @@ export const  routes= [
   ```Javascript
   export default {
       .....
-      watch: {
-          '$route'(to, from) {
+       watch: {
+        $route(to, from) {
               this.id = to.params.id;
           }
       }
   }
   ```
+  [Reacting to Params Changes](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes)
+
+# Global App Storage
+
+1. Create `shared_data.js` file in /src
+
+```Javascript
+export const shared_data = {
+
+  server_domain: "localhost:3000/",
+
+  items: ["item1", "item2", "item3"]
+};
+```
+
+2. Import the exported data shared_data object, and assign it as \$store variable in `main.js`
+
+```Javascript
+import { shared_data } from "./shared_data";
+
+Vue.prototype.$store = shared_data;
+};
+```
+
+3. Now we can set and get the shared data across the app with `this.$store.<prop_name>`.
+
+4) **_Attention!_** the $store is not reactive, therefor in the current usage of $store, after updating our \$store (`set` action) we need to update our data to
+   ```Javascript
+    data() {
+        return {
+        myItems: this.$store.items
+        };
+   },
+   methods: {
+        add() {
+            this.$store.items.push("new");
+            this.myItems = this.$store.items;
+        }
+   }
+   ```
+   [**_See example on Search.vue_**]("./../src/views/Search.vue)
 
 # Dynamic Styling
 

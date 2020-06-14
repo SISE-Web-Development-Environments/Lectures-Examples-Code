@@ -9,5 +9,6 @@ export const routes = [
   {
     path: "/search",
     component: Search
-  }
+  },
+  { path: "*", redirect: "/" }
 ];
