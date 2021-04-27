@@ -7,9 +7,8 @@ const port = 3000;
 app.use(morgan(":method :url :status  :response-time ms"));
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("GET Hello World!");
 });
-
 
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-// calling an async function
+// Calling an async function
 fs.writeFile(`${__dirname}/mynewfile.txt`, "Hello content!", function (err) {
   if (err) throw err;
   console.log("I'm callback1 - file saved!"); //1
@@ -14,4 +14,4 @@ fs.writeFile(`${__dirname}/mynewfile.txt`, "Hello content!", function (err) {
   console.log("non callback print - 2"); //3
 }); // writeFile
 
-console.log("non callback print"); //4
+console.log("non callback print - 1"); //4

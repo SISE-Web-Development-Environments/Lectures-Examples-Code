@@ -1,14 +1,14 @@
 const express = require("express");
 const morgan = require("morgan"); // logging library
-var bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
 
 // print request logs
 app.use(morgan(":method :url :status  :response-time ms"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // GET method route and '/' URI
 app.get("/", function (req, res) {
