@@ -5,8 +5,8 @@ var bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // print request logs
 app.use(morgan(":method :url :status  :response-time ms"));
 

@@ -2,14 +2,13 @@ const fs = require("fs");
 // ++++++++++++++++++++++++++++++++++++++++++++++++
 const axios = require("axios"); // supports promises
 // ++++++++++++++++++++++++++++++++++++++++++++++++
-const opn = require("opn");
-const file_path = `${__dirname}/my_hero.txt`;
+const opn = require("open");
 
 // API SITE: https://superheroapi.com/
 const superhero_api_baseurl = "https://superheroapi.com/api/10219968444535202";
 
 // Read our superhero name from database
-let readFilePromise = () => {
+let readFilePromise = (file_path) => {
   return new Promise((resolve, reject) => {
     fs.readFile(`${file_path}`, "utf-8", (err, file_data) => {
       if (err) {
@@ -18,7 +17,6 @@ let readFilePromise = () => {
         };
       }
       console.log(file_data);
-
       resolve(file_data);
     });
   });
@@ -33,7 +31,8 @@ let setTimeoutPromise = (data) => {
   });
 };
 
-readFilePromise()
+const file_path = `${__dirname}/my_hero.txt`;
+readFilePromise(file_path)
   .then((file_data) => {
     let superhero_name = file_data;
     let request_url = `${superhero_api_baseurl}/search/${superhero_name} `;

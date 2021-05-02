@@ -1,6 +1,6 @@
 const fs = require("fs");
 const request = require("request"); //
-const opn = require("opn");
+const opn = require("open");
 
 const file_path = `${__dirname}/my_hero.txt`;
 
