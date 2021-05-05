@@ -11,7 +11,7 @@ async function timeTest1() {
   await timeoutPromise(3000);
   await timeoutPromise(3000);
 
-  console.log("Ran after " + (new Date().getSeconds() - s) + " seconds");
+  console.log("timeTest1 - Ran after " + (new Date().getSeconds() - s) + " seconds");
 }
 
 async function timeTest2() {
@@ -23,9 +23,9 @@ async function timeTest2() {
   await timeoutPromise2;
   await timeoutPromise3;
 
-  console.log("Ran after " + (new Date().getSeconds() - s) + " seconds");
+  console.log("timeTest2 - Ran after " + (new Date().getSeconds() - s) + " seconds");
 }
 
 const s = new Date().getSeconds();
 
-timeTest2();
+timeTest1();

@@ -14,6 +14,8 @@ async function test_me() {
   console.log(x);
   return x * 2;
 }
+
+
 test_me().then(console.log);
 
 
