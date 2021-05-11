@@ -16,7 +16,7 @@ author: Shir Frumerman
 3. Try the get request:
     - click on: 'Try it out' -> 'Execute'
     - Check the Network --> see your request was sent to the server
-    - See logs on server for: GET /
+    - See logs on server for the endpoint: GET /
     - See response body on the UI
 
 
@@ -24,6 +24,6 @@ author: Shir Frumerman
 
 1. Replace the `dist/api.yml` file with your `api.yml` file - should have that name
 2. That's it, now go the the api-ui link again and see your api
-3. now you can test your server by calling its endpoints, according to your API file.
+3. Now you can test your server endpoints and handlers by calling from the UI, according to your API file.
 
 ### Good Luck!
