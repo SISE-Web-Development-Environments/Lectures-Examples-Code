@@ -1,0 +1,23 @@
+openapi: 3.0.1
+info:
+  title: Swagger Petstore
+  description: 'This is a sample server hosted on github, according to your openapi spec.'
+  version: 1.0.0
+# servers:
+# - url: http//:localhost:3000
+tags:
+- name: test
+  description: Some example tag
+
+paths:
+  /:
+    get:
+      tags:
+        - test
+      description: test endpoint
+
+      responses:
+        200:
+          description: some text
+          content: ""
+
