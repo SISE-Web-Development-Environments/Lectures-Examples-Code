@@ -1,0 +1,47 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</script>
+
+<body>
+    <div id="app">
+        <h1>You always have room for another dessert</h1>
+        get me <input type="number" placeholder="amount" v-model="desserts_amount"> more desserts, <button
+            @click="getRandomDessert(desserts_amount)">thanks!</button>
+        <ol>
+            <li v-for="dessert in dessert_list" :key="dessert.id">
+                I will take {{ dessert.variety }}, with {{dessert.topping}} topping and in {{dessert.flavor}} flavor.
+            </li>
+        </ol>
+
+    </div>
+</body>
+
+</html>
+
+<!-- Code to declare Vue.js on app -->
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            dessert_list: [],
+            desserts_amount: 0
+
+        },
+        methods: {
+            getRandomDessert(amount) {
+                for (let i = 0; i < amount; i++) {
+                    axios.get('http://localhost:3000').then(
+                        response => this.dessert_list.push(response.data
+                        )
+                    )
+
+
+                }
+            }
+        }
+    })
+
+</script>
