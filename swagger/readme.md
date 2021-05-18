@@ -1,4 +1,4 @@
-# Using openAPI spec to test you server
+# Using your openAPI API document and swagger-ui tool to test you server
 
 author: Shir Frumerman
 
