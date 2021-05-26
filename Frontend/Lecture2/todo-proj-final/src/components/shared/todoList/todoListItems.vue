@@ -9,16 +9,16 @@
 <script>
 export default {
   props: {
-    tasks: Array
+    tasks: Array,
   },
   data: {
-    myTasks: tasks
+    myTasks: this.tasks,
   },
   methods: {
     removeItem(index) {
       this.tasks.splice(index, 1);
-    }
-  }
+    },
+  },
 };
 </script>
 
