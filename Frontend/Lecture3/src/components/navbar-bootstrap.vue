@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "navbar-bootstrap"
+  name: "navbar-bootstrap",
 };
 </script>
 

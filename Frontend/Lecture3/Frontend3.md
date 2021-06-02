@@ -1,5 +1,11 @@
 # Routing
 
+- Since we are dealing with single-page-application (SPA), as oppose to static/dynamic pages, we need a routing mechanism in the client, to route between the app views/pages
+- Remember that these views exists locally in the app and we don't need to request them separately from the server as oppose to non-SPA apps
+- The only requests we make to the server are for getting relevant data to present in the view
+
+## How we use it
+
 1. Installing the package vue-router
 
    `npm install --save vue-router`
@@ -159,63 +165,70 @@ export const  routes= [
 
 - In our example: /recipe/123, `this.$route.params.id` is equal to `123`
 
-- This usage has one problem
-  - When routing same path, but with different parameters, we are using the same component
-  - In that case the value of \$route.params.id will not updated
-  - For example: from recipe/123 to recipe/111:
-    `$route.params == 123` on both routes
-  - We can use the **_'watch'_** property, to set a watcher on \$route's value changes
-  ```Javascript
-  export default {
-      .....
-       watch: {
-        $route(to, from) {
-              this.id = to.params.id;
-          }
-      }
-  }
-  ```
-  [Reacting to Params Changes](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes)
 
-# Global App Storage
+# App State-Management
 
-1. Create `shared_data.js` file in /src
+App state can can varied from a button, some div background state to the state of the current input value the user has entered.
+
+When the number of components in application increases and their logic is getting more complex, managing the app state is getting harder.
+
+In such cases we will implement a state-management pattern in the app, when is it especially useful?
+
+- When different components acts on the same state ( sharing data between sibling components )
+- When we use the same data in multiple different places in the app ( general/basic data that was retrieved from the server)
+
+
+In the state-management, we don't want to do actions (modfy/write) dierctly to the states, instead we will use `actions` ( methods ) to modify states. This way we can follow which component, how and when changed a state.
+
+[Usually wih Vue we will use the **Vuex** library for state-management](https://vuex.vuejs.org/)
+
+## Follow is a simplified and naive implementation of state management
+
+1. Create `store.js` file in /src
 
 ```Javascript
-export const shared_data = {
+const state = {
 
   server_domain: "localhost:3000/",
 
   items: ["item1", "item2", "item3"]
 };
+
+const actions = {
+    addItem: ()=>{
+        state.items.push("newItem")
+    }
+}
+
+export {state, actions}
+
+
 ```
 
 2. Import the exported data shared_data object, and assign it as \$store variable in `main.js`
 
 ```Javascript
-import { shared_data } from "./shared_data";
+import { state as store_state, actions as store_actions } from "./store";
 
-Vue.prototype.$store = shared_data;
-};
+const state = Vue.observable(store_state)
+const actions = Vue.observable(store_actions)
+const store = { state: state, actions: actions }
+
+
+Vue.prototype.$store = store;
 ```
 
-3. Now we can set and get the shared data across the app with `this.$store.<prop_name>`.
+3. Now we can get the shared data across the app with <br> `this.$store.state.<state_name>` :
+```
+this.$store.state.items // will return ["item1", "item2", "item3"]
+```
 
-4) **_Attention!_** the $store is not reactive, therefor in the current usage of $store, after updating our \$store (`set` action) we need to update our data to
-   ```Javascript
-    data() {
-        return {
-        myItems: this.$store.items
-        };
-   },
-   methods: {
-        add() {
-            this.$store.items.push("new");
-            this.myItems = this.$store.items;
-        }
-   }
-   ```
-   [**_See example on Search.vue_**]("./../src/views/Search.vue)
+4. And to do actions on the states <br>
+`this.$store.actions.<action_name>(<params>)`.
+```
+this.$store.actions.addItem(new_item)
+```
+
 
 # Dynamic Styling
 
@@ -224,3 +237,7 @@ https://vuejs.org/v2/guide/class-and-style.html
 # Using External Styling and Components
 
 https://bootstrap-vue.org/docs#using-module-bundlers
+
+# Color Schemes ideas
+
+https://visme.co/blog/website-color-schemes/

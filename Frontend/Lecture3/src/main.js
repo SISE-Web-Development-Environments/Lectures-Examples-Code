@@ -11,14 +11,19 @@ const router = new VueRouter({
 import GlobalTest from "./components/Global.vue";
 Vue.component("GlobalTest", GlobalTest);
 
-import { shared_data } from "./shared_data";
-Vue.prototype.$store = shared_data;
+import { state as store_state, actions as store_actions } from "./store";
+
+const state = Vue.observable(store_state)
+const actions = Vue.observable(store_actions)
+const store = { state: state, actions: actions }
+
+
+Vue.prototype.$store = store;
 
 Vue.config.devtools = true;
 
 new Vue({
   el: "#app",
   router, // ES6: Same as writing routes:routes
-
   render: h => h(App)
 });

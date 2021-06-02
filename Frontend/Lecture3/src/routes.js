@@ -7,6 +7,10 @@ export const routes = [
     component: Home
   },
   {
+    path: "/search/:name",
+    component: Search
+  },
+  {
     path: "/search",
     component: Search
   },

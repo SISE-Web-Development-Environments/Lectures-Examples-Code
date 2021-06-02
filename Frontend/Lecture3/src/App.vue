@@ -1,18 +1,21 @@
 <template>
-  <div>
+  <div style="padding: 20px">
     <BtsNavbar></BtsNavbar>
+
     <h1>Welcome To My Great Site!</h1>
-    Our API server is: {{ this.$store.server_domain }}
+    <p>Our API server is: {{ this.$store.state.server_domain }}</p>
+    <p>Our liga is: {{ this.$store.state.league }}</p>
     <br />
-    <p>
-      <b>The different view will be shown below me:</b>
 
-      <router-view style="min-height:200px;"></router-view>
-
-      
+    <p style="font-weight: bold; color: green">
+      The different view will be shown below me:
     </p>
-    <footer>All copyrights belongs to me</footer>
     <GlobalTest></GlobalTest>
+    <router-view id="router-view" style="min-height: 900px"> </router-view>
+
+    <footer style="background-color: purple; color: white">
+      &#169; All copyrights belongs to me
+    </footer>
   </div>
 </template>
 
@@ -24,9 +27,12 @@ export default {
   components: { BtsNavbar: BtsNavbar },
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
+      msg: "Welcome to Your Vue.js App",
     };
-  }
+  },
+  created() {
+    this.$store.actions.initiate();
+  },
 };
 </script>
 

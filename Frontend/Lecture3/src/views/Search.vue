@@ -2,11 +2,12 @@
   <div>
     <h1>Search Page</h1>
     <GlobalTest></GlobalTest>
-    List of global items:
+    List of pokemons in store:
     <ul>
-      <li v-for="(item, index) in myItems" :key="index">{{ item }}</li>
+      <li v-for="pok in $store.state.pokemons" :key="pok">{{ pok }}</li>
     </ul>
-    <button @click="add">ADD</button>
+
+    <h3>The pokemon in the url params is: {{ $route.params.name }}</h3>
   </div>
 </template>
 
@@ -16,16 +17,10 @@ export default {
 
   data() {
     return {
-      myItems: this.$store.items
+      myItems: this.$store.items,
     };
   },
-  methods: {
-    add() {
-      this.$store.items.push("new");
-      this.myItems = this.$store.items;
-      console.log(this.$store.items);
-    }
-  }
+  methods: {},
 };
 </script>
 
